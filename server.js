@@ -11,7 +11,7 @@ app.use(express.json())
 const cors = require('cors')
 app.use(cors());
 
-app.get('/doubled', (req, res) => { //"send to" the server. really telling it what to respond with
+app.get('/data', (req, res) => { //"send to" the server. really telling it what to respond with
     
     
     res.status(200).json(

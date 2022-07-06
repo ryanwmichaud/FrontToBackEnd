@@ -21,7 +21,7 @@ clearBtn.addEventListener('click', async (e)=>{
 
 async function getInfo(e){ //get info from server
     e.preventDefault()
-    const res = await fetch(baseURl + 'doubled' , { method: 'GET' })//. option for fetch. get by default but well write it
+    const res = await fetch(baseURl + 'data' , { method: 'GET' })//. option for fetch. get by default but well write it
     const data = await res.json() //get as json
     input.value = data.sum //info is the field we gave the res json
 }
