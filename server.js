@@ -10,6 +10,8 @@ var num = 0;
 
 app.use(express.static('public')) //default served at home route
 app.use(express.json())
+const cors = require('cors')
+app.use(cors());
 
 app.get('/doubled', (req, res) => {
     
