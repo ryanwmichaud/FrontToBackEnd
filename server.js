@@ -2,28 +2,32 @@ const express = require('express');
 const app = express();
 const port = 8383;
 
-function calc(num){
-    return num * 2
-}
-
-var num = 0;
+var last = 0;
+var curr = 0;
+var sum = eval(last) + eval(curr);
 
 app.use(express.static('public')) //default served at home route
 app.use(express.json())
 const cors = require('cors')
 app.use(cors());
 
-app.get('/doubled', (req, res) => {
+app.get('/doubled', (req, res) => { //"send to" the server. really telling it what to respond with
     
-    ret = calc(num)
-    console.log(ret);
-    res.status(200).json({info: `${ret}`})
+    
+    res.status(200).json(
+        {
+            last: `${last}`,
+            current: `${curr}`,
+            sum:  `${sum}`
+        })
 })
 
-app.post('/', (req,res)=>{
+app.post('/', (req,res)=>{ //receive the fetch post req. get the data and do stuff w it. here I jsut saved it globally. 
+    last = curr;
     const {parcel} = req.body
     console.log(parcel);
-    num = parcel;
+    curr = parcel;
+    sum = curr + last
     if (!parcel){
         return res.status(400).send({status: 'failed'})
     }
